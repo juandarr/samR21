@@ -1,5 +1,5 @@
 # Drivers
-This repository includes a list of drivers to manage different peripherals and special components from the SamR21. 
+This repository includes a set of drivers to manage different peripherals and special components from the SamR21. 
 
 ## Neopixel
 
