@@ -36,6 +36,7 @@
 #include "conf_test.h"
 #include "conf_clocks.h"
 #include "sio2host.h"
+#include "neopixel.h"
 
 /* TCC modules used in tests */
 static struct tcc_module tcc_test0_module;
@@ -134,8 +135,16 @@ int main (void)
 	int x = 200;
 	int cont= 1;
 	
-	
+	/*
 	while (1){
+		
+		if (port_pin_get_input_level(BUTTON_0_PIN) == BUTTON_0_ACTIVE) {
+			
+			Neopixel_showColor(0,90,0);
+			
+		}
+		*/
+		/*
 		port_pin_set_output_level(PIN_PA13, true);
 		delay_us(x);
 		port_pin_set_output_level(PIN_PA13, false);
@@ -148,17 +157,22 @@ int main (void)
 		}
 		
 	}
-	/*
-	for(int i =0;i<12;i++) {
-		
+	*/
 	
+	for(int i =0;i<1;i++) {
+		
+		Neopixel_showColor(20,0,0);
+		
+	}
 		//asm volatile("nop" );
 		
 		//tcc_restart_counter(&tcc_test0_module);
 		/*
 		if (port_pin_get_input_level(BUTTON_0_PIN) == BUTTON_0_ACTIVE) {
 			
-			
+			*/
+		
+		/*
 			system_interrupt_enter_critical_section();
 			
 		
@@ -324,22 +338,22 @@ int main (void)
 			port_pin_set_output_level(PIN_PA13, false);
 			asm( "nop;nop;nop;nop;");
 			
-			//asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+			asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 			
 			port_pin_set_output_level(PIN_PA13, true);
 			asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
 			port_pin_set_output_level(PIN_PA13, false);
 			asm( "nop;nop;nop;nop;");
 			
-			//system_interrupt_leave_critical_section();
-			
+			system_interrupt_leave_critical_section();
+		}
 			/*
 		} else {
 			
 			//port_pin_set_output_level(LED_0_PIN, !LED_0_ACTIVE);
 		}
 		*/
-	//}
+	
 	
 	
 }

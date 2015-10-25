@@ -124,7 +124,8 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/sam0/drivers/tcc/tcc_callback.h \
  ../src/ASF/sam0/drivers/tcc/tcc.h ../src/config/conf_test.h \
  ../src/config/conf_clocks.h \
- ../src/ASF/thirdparty/wireless/addons/sio2host/uart/sio2host.h
+ ../src/ASF/thirdparty/wireless/addons/sio2host/uart/sio2host.h \
+ ../src/neopixel.h
 
 ../src/asf.h:
 
@@ -385,3 +386,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/config/conf_clocks.h:
 
 ../src/ASF/thirdparty/wireless/addons/sio2host/uart/sio2host.h:
+
+../src/neopixel.h:
