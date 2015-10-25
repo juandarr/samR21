@@ -158,12 +158,42 @@ int main (void)
 		
 	}
 	*/
-	
+	/*
 	for(int i =0;i<1;i++) {
 		
 		Neopixel_showColor(20,0,0);
 		
+	}*/
+
+	
+	void (*p[6][6])() ={{red, cyan, green, blue,yellow,magenta},{cyan, green, blue,yellow,magenta,red},{green, blue,yellow,magenta,red, cyan},{blue,yellow,magenta,red, cyan, green},{yellow,magenta,red, cyan, green, blue},{magenta,red, cyan, green, blue,yellow}};
+	int j = 0;
+	
+	
+	while (1)
+{
+	for(int i = 0; i < 3;i++){
+	//green();
+	//delay_ms(tiempo);
+	//blue();
+	(*p[j][0]) ();
+	//delay_ms(tiempo);
+	(*p[j][1]) ();
+	//red();
+	(*p[j][2]) ();
+	//cyan();
+	(*p[j][3]) ();
+	//delay_ms(10);	
+	(*p[j][4]) ();
+	(*p[j][5]) ();
 	}
+	
+	delay_ms(200);	
+	j++;
+	if (j>5){
+		j=0;
+	}
+}
 		//asm volatile("nop" );
 		
 		//tcc_restart_counter(&tcc_test0_module);
