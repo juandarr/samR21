@@ -121,7 +121,7 @@ int main (void)
 	
 	//configure_tc();
 	
-	//delay_init();
+	delay_init();
 	
 	//system_interrupt_enable_global();
 	
@@ -131,10 +131,24 @@ int main (void)
 	
 	inter = system_interrupt_is_global_enabled();
 	printf(" Interrups state: %s ", inter?"1":"0");
+	int x = 200;
+	int cont= 1;
 	
 	
-	
-	
+	while (1){
+		port_pin_set_output_level(PIN_PA13, true);
+		delay_us(x);
+		port_pin_set_output_level(PIN_PA13, false);
+		delay_us(x);
+		cont++;
+		if (cont ==100){
+			x++;
+			cont= 1;
+			printf("value x in: %d\n", x);
+		}
+		
+	}
+	/*
 	for(int i =0;i<12;i++) {
 		
 	
@@ -146,7 +160,7 @@ int main (void)
 			
 			
 			system_interrupt_enter_critical_section();
-			*/
+			
 		
 			//GREEN
 			port_pin_set_output_level(PIN_PA13, true);
@@ -325,7 +339,7 @@ int main (void)
 			//port_pin_set_output_level(LED_0_PIN, !LED_0_ACTIVE);
 		}
 		*/
-	}
+	//}
 	
 	
 }
