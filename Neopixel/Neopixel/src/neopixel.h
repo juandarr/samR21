@@ -45,26 +45,37 @@ void Neopixel_showColor(uint8_t red, uint8_t green, uint8_t blue)
 			printf("Hexa: %04x\nBin: ", c);
 			j = 0;        // reset the 24-bit counter
 			do {
-				port_pin_set_output_level(PIN_PA13, true);
+				
 				if (c & mask) { // if masked bit is high
+					
+					port_pin_set_output_level(PIN_PA13, true);
 					// WS2812 spec             700ns HIGH
 					// Adafruit on Arduino    (meas. 812ns)
 					// This lib on Spark Core (meas. 804ns)
 					// This lib on Photon     (meas. 792ns)
-					//asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+					
+					//16 MHz
+					asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+					
+					/*48MHz
 					asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 						 "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 						 "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 						 "nop;nop;"
-					);
+					);*/
 					// WS2812 spec             600ns LOW
 					// Adafruit on Arduino    (meas. 436ns)
 					// This lib on Spark Core (meas. 446ns)
 					// This lib on Photon     (meas. 434ns)
 					port_pin_set_output_level(PIN_PA13, false); //LOW
+					
+					//16 MHz
+					asm( "nop;nop;nop;nop;");
+					
+					/* 48MHz
 					asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 						 "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
-					);
+					); */
 					//printf("1");
 				}
 				else { // else masked bit is low
@@ -72,19 +83,31 @@ void Neopixel_showColor(uint8_t red, uint8_t green, uint8_t blue)
 					// Adafruit on Arduino    (meas. 312ns)
 					// This lib on Spark Core (meas. 318ns)
 					// This lib on Photon     (meas. 308ns)
+					port_pin_set_output_level(PIN_PA13, true);
+					//16 MHz
+					asm( "nop;");
+					
+					/* 48MHz
 					asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 					     "nop;nop;nop;"
 					);
+					*/
 					// WS2812 spec             800ns LOW
 					// Adafruit on Arduino    (meas. 938ns)
 					// This lib on Spark Core (meas. 944ns)
 					// This lib on Photon     (meas. 936ns)
 					port_pin_set_output_level(PIN_PA13, false); // LOW
+					
+					// 16 MHz
+					asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+					
+					/* 48 MHz
 					asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 					"nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 					"nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 					"nop;nop;nop;nop;nop;nop;nop;nop;nop;"
 					);
+					*/
 					//printf("0");
 				}
 				mask >>= 1;
@@ -966,172 +989,172 @@ void yellow()
 	{
 
 		
-		//GREEN
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	//GREEN
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 
-		//RED
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	//RED
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 		
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;");
 		
-		//BLUE
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	//BLUE
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		port_pin_set_output_level(PIN_PA13, true);
-		asm( "nop;");
-		port_pin_set_output_level(PIN_PA13, false);
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	port_pin_set_output_level(PIN_PA13, true);
+	asm( "nop;");
+	port_pin_set_output_level(PIN_PA13, false);
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 				
-		asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
+	asm( "nop;nop;nop;nop;nop;nop;nop;nop;nop;nop;");
 	
 }
 #endif /* NEOPIXEL_H_ */
