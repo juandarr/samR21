@@ -538,7 +538,16 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\basic_colors.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\buzzer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\neopixel.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\tc_configuration.h">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\ASF\common2\services\delay\sam0\systick_counter.h">

@@ -92,6 +92,16 @@ void system_board_init(void);
 #define LED0 LED0_PIN
 /** @} */
 
+/** \name Neopixel definitions
+ *  @{ */
+#define neo_PIN                   PIN_PA16
+/** @} */
+
+/** \name Neopixel definitions
+ *  @{ */
+#define buzzer_PIN                   PIN_PA23
+/** @} */
+
 /** \name SW0 definitions
  *  @{ */
 #define SW0_PIN                   PIN_PA28

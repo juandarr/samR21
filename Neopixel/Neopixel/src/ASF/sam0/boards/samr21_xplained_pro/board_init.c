@@ -69,10 +69,15 @@ void system_board_init(void)
 	port_pin_set_config(LED_0_PIN, &pin_conf);
 	port_pin_set_output_level(LED_0_PIN, LED_0_INACTIVE);
 	
-	/* Configure LEDs as outputs, turn them off */
+	/* Configure Neopixel control output */
 	
-	port_pin_set_config(PIN_PA13, &pin_conf);
-	port_pin_set_output_level(PIN_PA13, false);
+	port_pin_set_config(neo_PIN, &pin_conf);
+	port_pin_set_output_level(neo_PIN, false);
+	
+	/* Configure buzzer control output */
+	
+	port_pin_set_config(buzzer_PIN, &pin_conf);
+	port_pin_set_output_level(buzzer_PIN, false);
 	
 	/* Set buttons as inputs */
 	pin_conf.direction  = PORT_PIN_DIR_INPUT;
