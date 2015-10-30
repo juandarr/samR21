@@ -26,7 +26,12 @@ int notes[] =   {0,
 	478,451,426,402,379,358,338,319,301,284,268,253,
 	239,226,213,201,190,179,169,159,151,142,134,127};
 
-char * song =(char *)"MissionImp:d=16,o=6,b=95:32d,32d#,32d,32d#,32d,32d#,32d,32d#,32d,32d,32d#,32e,32f,32f#,32g,g,8p,g,8p,a#,p,c7,p,g,8p,g,8p,f,p,f#,p,g,8p,g,8p,a#,p,c7,p,g,8p,g,8p,f,p,f#,p,a#,g,2d,32p,a#,g,2c#,32p,a#,g,2c,a#5,8c,2p,32p,a#5,g5,2f#,32p,a#5,g5,2f,32p,a#5,g5,2e,d#,8d";
+//char * song =(char *)"MissionImp:d=16,o=6,b=95:32d,32d#,32d,32d#,32d,32d#,32d,32d#,32d,32d,32d#,32e,32f,32f#,32g,g,8p,g,8p,a#,p,c7,p,g,8p,g,8p,f,p,f#,p,g,8p,g,8p,a#,p,c7,p,g,8p,g,8p,f,p,f#,p,a#,g,2d,32p,a#,g,2c#,32p,a#,g,2c,a#5,8c,2p,32p,a#5,g5,2f#,32p,a#5,g5,2f,32p,a#5,g5,2e,d#,8d";
+//char * song =(char *)"American:d=4,o=5,b=100:8g.,16e,c,e,g,2c6,8e.6,16d6,c6,e,f#,2g,g,e.6,8d6,c6,2b,8a.,16b,c6,c6,g,e,c";
+//char * song = (char *)"JingleBell:d=8,o=5,b=112:32p,a,a,4a,a,a,4a,a,c6,f.,16g,2a,a#,a#,a#.,16a#,a#,a,a.,16a,a,g,g,a,4g,4c6";
+//char * song = (char *)"Beatles_Let_It_Be:d=4,o=5,b=100:16e6,8d6,c6,16e6,8g6,8a6,8g.6,16g6,8g6,8e6,16d6,8c6,16a,8g,e.6,p,8e6,16e6,8f.6,8e6,8e6,8d6,16p,16e6,16d6,8d6,2c.6";
+char * song = (char *)"bitter_sweet:d=4,o=5,b=100:8p,32d.6,16p,32f6,16p,32d6,16p,32d#.6,16p,32c6,16p,d#6,32p,32g#6,16p,32d#6,16p,g#6,32p,32g6,16p,32d#.6,16p,g6,8p,32d.6,16p,32f6,16p,32d6,16p,32d#.6,16p,32c6,16p,d#6,32p,32g#6,16p,32d#6,16p,g#6,32p,32g6,16p,32d#.6,16p,g6";
+
 
 //Tone function receiving output pin, frequency in Hz and duration of tone in mS
 void tone(uint32_t pin, uint32_t frequency, uint32_t duration)

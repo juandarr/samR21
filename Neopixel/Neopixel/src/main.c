@@ -37,7 +37,7 @@
 #include "conf_clocks.h"
 #include "sio2host.h"
 #include "tc_configuration.h"
-#include "neopixel.h"
+#include "neopixel_config.h"
 #include "buzzer.h"
 	
 	
@@ -51,6 +51,8 @@ int main (void)
 	
 	delay_init();
 	
+	neopixel_init();
+	
 	//Interrup related block of code
 	
 	//system_interrupt_enable_global();
@@ -60,29 +62,39 @@ int main (void)
 	printf(" Interrups state: %s\n", inter?"1":"0");
 	
 	//Neopixel_showPattern();
-	/*
-	int delay = 200;
+	
+	int delay = 1000;
 	int j= 0;
 	
-	int perm[7][3]={{1,0,0},{0,1,0},{0,0,1},{1,1,0},{0,1,1},{1,0,1},{1,1,1}};
+	uint8_t perm[7][3]={{1,0,0},{0,1,0},{0,0,1},{1,1,0},{0,1,1},{1,0,1},{1,1,1}};
 		
 	while (1){
 		
-		Neopixel_showColor(16*perm[j][0],16*perm[j][1],16*perm[j][2]);
-		
-		delay_ms(delay);
+		for (int i=0; i<6;i++)
+		{
+			neopixelShow(16*perm[i][0],16*perm[i][1],16*perm[i][2]); //&neo
+		}
 		
 		j++;
 		
-		if (j>6) j=0;
-		
+		if (j>2) 
+		{
+			j=0;
+			delay_ms(delay);
+		}
+		/*
 		if (port_pin_get_input_level(BUTTON_0_PIN) == BUTTON_0_ACTIVE) {
 		}
-		
+		*/
 	}
-	*/	
 	
-	
+	/*
+	while(1)
+	{
+		Neopixel_showPattern(100);
+	}
+	*/
+	/*
 	while(1)
 	{	
 	 if(!songStarts)
@@ -102,7 +114,7 @@ int main (void)
 		 break;
 	 }
 	}
-	
+	*/
 	
 	
 

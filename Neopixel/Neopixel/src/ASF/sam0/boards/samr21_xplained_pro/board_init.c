@@ -69,11 +69,6 @@ void system_board_init(void)
 	port_pin_set_config(LED_0_PIN, &pin_conf);
 	port_pin_set_output_level(LED_0_PIN, LED_0_INACTIVE);
 	
-	/* Configure Neopixel control output */
-	
-	port_pin_set_config(neo_PIN, &pin_conf);
-	port_pin_set_output_level(neo_PIN, false);
-	
 	/* Configure buzzer control output */
 	
 	port_pin_set_config(buzzer_PIN, &pin_conf);

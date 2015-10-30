@@ -547,6 +547,9 @@
     <Compile Include="src\neopixel.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\neopixel_config.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\tc_configuration.h">
       <SubType>compile</SubType>
     </Compile>
