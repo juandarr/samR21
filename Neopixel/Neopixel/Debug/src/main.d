@@ -126,7 +126,10 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/config/conf_clocks.h \
  ../src/ASF/thirdparty/wireless/addons/sio2host/uart/sio2host.h \
  ../src/tc_configuration.h ../src/neopixel_config.h ../src/neopixel.h \
- ../src/basic_colors.h ../src/buzzer.h \
+ ../src/basic_colors.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h \
+ ../src/buzzer.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\ctype.h
 
 ../src/asf.h:
@@ -396,6 +399,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/neopixel.h:
 
 ../src/basic_colors.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h:
 
 ../src/buzzer.h:
 

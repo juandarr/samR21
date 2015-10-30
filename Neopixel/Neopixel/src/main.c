@@ -64,25 +64,47 @@ int main (void)
 	
 	//Neopixel_showPattern();
 	
-	int delay = 1000;
+	int delay = 30;
 	int j= 0;
-	
+	int i = 20;
+	int d = 5;
 	uint8_t perm[7][3]={{1,0,0},{0,1,0},{0,0,1},{1,1,0},{0,1,1},{1,0,1},{1,1,1}};
+	neo.numLeds = 1;
+	
+	
+	while (1)
+	{
 		
-	while (1){
-			neo.red = 16*perm[j][0];
-			neo.green = 16*perm[j][1];
-			neo.blue = 16*perm[j][2];
-			neo.numLeds = 8;
-			neopixelShow(&neo);//16*perm[j][0],16*perm[j][1],16*perm[j][2]); //&neo
-
+		for (int k=0;k<neo.numLeds;k++)
+		{
+			neopixel_setPixelColor(&neo,k,neopixelColor(i,i,0));	
+		}
 		
+		//16*perm[j][0];
+		//*perm[j][1];
+		//*perm[j][2];	
+		//neopixelShow(&neo);//16*perm[j][0],16*perm[j][1],16*perm[j][2]); //&neo
 		j++;
+		i=i+d;
 		delay_ms(delay);
+		
+		break;
+
 		if (j>6) 
 		{
 			j=0;
-			
+		}
+		
+		if (i>90) 
+		{	
+			i=90;
+			d= -5;
+		}
+		
+		if (i<0)
+		{
+			i=0;
+			d=5;
 		}
 		/*
 		if (port_pin_get_input_level(BUTTON_0_PIN) == BUTTON_0_ACTIVE) {

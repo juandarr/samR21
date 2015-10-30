@@ -11,8 +11,8 @@
 
 //Library with basic colors defined as a constant stream of bits (no loops involved)
 #include "basic_colors.h"
-
-
+#include <stdlib.h>
+#include <string.h>
 
 
 /*** Define struct to store the fundamental data to work with a neopixel ***/
@@ -24,6 +24,7 @@ struct neopixel
 	uint8_t blue; // 8 bit number to turn on blue led (0-255)
 	uint16_t numLeds; // Number of leds of the neopixel strip
 	uint8_t brightness; // Brightness as percentage (0-100)
+	uint8_t * pixels;
 	
 };
 
@@ -32,7 +33,6 @@ typedef struct neopixel Neopixel ;
 void neopixelDefaults(Neopixel *neopixel_config);
 void neopixelBegin(Neopixel *neopixel_config);
 void neopixelShow(Neopixel *neopixel_config);
-//void neopixelShow(uint8_t red, uint8_t green, uint8_t blue);
 void neopixel_setColor(Neopixel *neopixel_config, uint8_t r, uint8_t g, uint8_t b );
 void neopixel_setBrightness(Neopixel *neopixel_config, uint8_t brightness );
 void neopixel_clear(Neopixel *neopixel_config);
@@ -59,7 +59,12 @@ void neopixelBegin(Neopixel *neopixel_config)
 	pin_conf.direction  = PORT_PIN_DIR_OUTPUT;
 	//neopixel_config->pin
 	port_pin_set_config(neo_PIN, &pin_conf);
-	port_pin_set_output_level(neo_PIN, false);	
+	port_pin_set_output_level(neo_PIN, false);
+	
+	
+	if((neopixel_config->pixels = (uint8_t *)malloc(neopixel_config->numLeds*3))) {
+		memset(neopixel_config->pixels, 0, neopixel_config->numLeds*3);
+	} 	
 }
 
 
@@ -81,9 +86,9 @@ void neopixelShow(Neopixel *neopixel_config)
 		while(i) { // While bytes left... (3 bytes = 1 pixel)
 			mask = 0x800000; // reset the mask
 			i = i-3;      // decrement bytes remaining
-			//g = neopixel_config->green;   // Next green byte value
-			//r = neopixel_config->red;   // Next red byte value
-			//b = neopixel_config->blue;   // Next blue byte value
+			g = neopixel_config->green;   // Next green byte value
+			r = neopixel_config->red;   // Next red byte value
+			b = neopixel_config->blue;   // Next blue byte value
 			c = ((uint32_t)neopixel_config->green << 16) | ((uint32_t)neopixel_config->red <<  8) | neopixel_config->blue; // Pack the next 3 bytes to keep timing tight
 			//printf("Hexa: %04x\nBin: ", c);
 			j = 0;        // reset the 24-bit counter
@@ -165,19 +170,30 @@ void neopixelShow(Neopixel *neopixel_config)
 		} 
 }
 
-
-void neopixel_setColor(Neopixel *neopixel_config, uint8_t r, uint8_t g, uint8_t b )
+uint32_t neopixelColor(uint8_t r, uint8_t g, uint8_t b)
 {
-	neopixel_config->red = r;
-	neopixel_config->green = g;
-	neopixel_config->blue = b;
-	//neopixelShow(neopixel_config);
+		return ((uint32_t)g << 16) | ((uint32_t)r << 8) | b;
+}
+
+void neopixel_setPixelColor(Neopixel *neopixel_config, uint16_t n, uint32_t c)
+{
+	if (n < neopixel_config->numLeds)
+	{
+		uint8_t
+		r = (uint8_t)(c >> 16),
+		g = (uint8_t)(c >> 8),
+		b = (uint8_t)(c);
+		uint8_t *p = neopixel_config->pixels[n*3];
+		*p++ = g;
+		*p++ = r;
+		*p = b;	 
+	}
 }
 
 void neopixel_setBrightness(Neopixel *neopixel_config, uint8_t brightness )
 {
 	neopixel_config->brightness = brightness;
-	//neopixelShow(neopixel_config);
+	
 }
 
 void neopixel_clear(Neopixel *neopixel_config)
@@ -185,7 +201,7 @@ void neopixel_clear(Neopixel *neopixel_config)
 	neopixel_config->red = 0;
 	neopixel_config->green = 0;
 	neopixel_config->blue = 0;
-	//neopixelShow(neopixel_config);
+	
 }
 
 //This function shows a pattern of colors 
