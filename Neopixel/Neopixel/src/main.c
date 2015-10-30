@@ -51,6 +51,7 @@ int main (void)
 	
 	delay_init();
 	
+
 	neopixel_init();
 	
 	//Interrup related block of code
@@ -69,18 +70,19 @@ int main (void)
 	uint8_t perm[7][3]={{1,0,0},{0,1,0},{0,0,1},{1,1,0},{0,1,1},{1,0,1},{1,1,1}};
 		
 	while (1){
-		
-		for (int i=0; i<6;i++)
-		{
-			neopixelShow(16*perm[i][0],16*perm[i][1],16*perm[i][2]); //&neo
-		}
+			neo.red = 16*perm[j][0];
+			neo.green = 16*perm[j][1];
+			neo.blue = 16*perm[j][2];
+			neo.numLeds = 8;
+			neopixelShow(&neo);//16*perm[j][0],16*perm[j][1],16*perm[j][2]); //&neo
+
 		
 		j++;
-		
-		if (j>2) 
+		delay_ms(delay);
+		if (j>6) 
 		{
 			j=0;
-			delay_ms(delay);
+			
 		}
 		/*
 		if (port_pin_get_input_level(BUTTON_0_PIN) == BUTTON_0_ACTIVE) {

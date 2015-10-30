@@ -31,8 +31,8 @@ typedef struct neopixel Neopixel ;
 
 void neopixelDefaults(Neopixel *neopixel_config);
 void neopixelBegin(Neopixel *neopixel_config);
-//void neopixelShow(Neopixel *neopixel_config);
-void neopixelShow(uint8_t red, uint8_t green, uint8_t blue);
+void neopixelShow(Neopixel *neopixel_config);
+//void neopixelShow(uint8_t red, uint8_t green, uint8_t blue);
 void neopixel_setColor(Neopixel *neopixel_config, uint8_t r, uint8_t g, uint8_t b );
 void neopixel_setBrightness(Neopixel *neopixel_config, uint8_t brightness );
 void neopixel_clear(Neopixel *neopixel_config);
@@ -57,14 +57,16 @@ void neopixelBegin(Neopixel *neopixel_config)
 
 	/* Configure Neopixel control output */
 	pin_conf.direction  = PORT_PIN_DIR_OUTPUT;
-	port_pin_set_config(neopixel_config->pin, &pin_conf);
-	port_pin_set_output_level(neopixel_config->pin, false);	
+	//neopixel_config->pin
+	port_pin_set_config(neo_PIN, &pin_conf);
+	port_pin_set_output_level(neo_PIN, false);	
 }
 
 
 //void neopixelShow(Neopixel *neopixel_config)
-void neopixelShow(uint8_t red, uint8_t green, uint8_t blue)
+void neopixelShow(Neopixel *neopixel_config)
 {
+	int n = 16;
 	volatile uint32_t
 	c,    // 24-bit pixel color
 	mask; // 8-bit mask
@@ -74,16 +76,16 @@ void neopixelShow(uint8_t red, uint8_t green, uint8_t blue)
 	g,              // Current green byte value
 	r,              // Current red byte value
 	b,              // Current blue byte value
-	i = 3; //neopixel_config->numLeds*3; // Number of bytes
+	i = neopixel_config->numLeds*3; // Number of bytes
 	
 		while(i) { // While bytes left... (3 bytes = 1 pixel)
 			mask = 0x800000; // reset the mask
 			i = i-3;      // decrement bytes remaining
-			g = green;//neopixel_config->green;   // Next green byte value
-			r = red;//neopixel_config->red;   // Next red byte value
-			b = blue;//neopixel_config->blue;   // Next blue byte value
-			c = ((uint32_t)g << 16) | ((uint32_t)r <<  8) | b; // Pack the next 3 bytes to keep timing tight
-			printf("Hexa: %04x\nBin: ", c);
+			//g = neopixel_config->green;   // Next green byte value
+			//r = neopixel_config->red;   // Next red byte value
+			//b = neopixel_config->blue;   // Next blue byte value
+			c = ((uint32_t)neopixel_config->green << 16) | ((uint32_t)neopixel_config->red <<  8) | neopixel_config->blue; // Pack the next 3 bytes to keep timing tight
+			//printf("Hexa: %04x\nBin: ", c);
 			j = 0;        // reset the 24-bit counter
 			do {
 				
